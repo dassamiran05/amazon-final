@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components{
+    .headerHover {
+        @apply px-2 h-[80%] flex items-center border border-transparent hover:border-white duration-100 cursor-pointer
+    }
+
+    .footerLink{
+        @apply text-sm font-titleFont tracking-wide hover:text-gray-100 cursor-pointer hover:underline duration-150
+    }
+
+    .footerBottomTitle{
+        @apply w-24 font-semibold text-[12px] group-hover:underline text-[#DDD] leading-3 mb-[2ox] cursor-pointer
+    }
+
+    .footerBottomText{
+        @apply w-24 tracking-tight text-[12px] group-hover:underline text-[#999] leading-3 cursor-pointer
+    }
+
+    .productLi{
+        @apply 
+        text-gray-600 
+        hover:text-black 
+        text-sm font-medium 
+        /* border-b-[1px] 
+        border-b-gray-400  */
+        hover:border-b-gray-700 
+        flex 
+        items-center 
+        justify-end gap-2 
+        hover:cursor-pointer 
+        duration-300 w-full
+    }
+
+    .addCartIcon{
+        @apply
+        w-10
+        h-10
+        bg-[#facc15]
+        rounded-[50%]
+        flex
+        items-center
+        justify-center
+        text-xs
+        opacity-0
+        group-hover:opacity-100
+
+    }
+}
+
+
+
+.slick-next{
+    right: 0 !important;
+    border-radius: 3px 0 0 3px;
+    clip: rect(-10px,45px,110px,-10px);
+    padding-left: 5px;
+    position: absolute;
+    top: 55px;
+    background-color: #fff !important;
+    height: 100px !important;
+    line-height: 100px !important;
+    width: 45px !important;
+    text-align: center;
+    box-shadow: 0 1px 3px #888;
+    user-select: none;display: none !important;
+ }
+.slick-prev {
+    left: 0 !important;
+    border-radius: 0 3px 3px 0;
+    clip: rect(-10px,55px,110px,0);
+    padding-right: 5px;
+    position: absolute;
+    top: 55px;
+    background-color: #fff !important;
+    height: 100px !important;
+    line-height: 100px !important;
+    width: 45px !important;
+    text-align: center;
+    box-shadow: 0 1px 3px #888;
+    user-select: none;
+    display: none !important;
+ }
+
+ .slick-next:before{
+    display: inline-block;
+    line-height: normal;
+    vertical-align: top;
+    position: relative;
+    top: 50%;
+    height: 22px;
+    width: 13px;
+    margin-top: -11px;
+    opacity: 0.75;
+    color: black !important;
+ }
+
+
+
+ .slick-prev:before {
+    background-position: -14px 0;
+    display: inline-block;
+    line-height: normal;
+    vertical-align: top;
+    position: relative;
+    top: 50%;
+    height: 22px;
+    width: 13px;
+    margin-top: -11px;
+    opacity: 0.5;
+    color: black !important;
+}
+
+.slider-hovering:hover  .slick-next{
+    display: inline-block !important;
+}
+.slider-hovering:hover  .slick-prev{
+    display: inline-block !important;
+    z-index: 9;
+}
+
