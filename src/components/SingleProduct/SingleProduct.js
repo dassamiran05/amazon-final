@@ -127,9 +127,6 @@ const SingleProduct = ({ handleAddtoCart, handleDelete, products }) => {
 
                 }
 
-
-
-
                 {
                     product?.stock && (
                         <>

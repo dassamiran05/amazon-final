@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Cart from './pages/Cart';
 import Signin from './pages/Signin';
 import Register from './pages/Register';
-import { Toaster } from 'react-hot-toast';
+import { toast, Toaster } from 'react-hot-toast';
 import Checkout from './pages/Checkout';
 import PrivateRoute from './privateRoute/PrivateRoute';
 import SingleProduct from './components/SingleProduct/SingleProduct';
@@ -15,10 +15,10 @@ import useProducts from './api/useProducts';
 // import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 // import app from './firebase/firebase.config';
 
-const Main = ({ cartItems }) => {
+const Main = ({ cartItems, handleSearchCategory }) => {
   return (
     <div>
-      <Header cartItems={cartItems} />
+      <Header cartItems={cartItems} handleSearchCategory={handleSearchCategory}/>
       <Outlet />
       <Footer />
     </div>
@@ -31,6 +31,7 @@ function App() {
 
   const [cartItems, setCartItems] = useState([]);
   const [products] = useProducts();
+  const [category, setCategory] = useState('All');
 
 
   //Add to cart functionality
@@ -46,6 +47,7 @@ function App() {
       setCartItems(newCartItems);
       saveProductLocalstorage(newCartItems);
     }
+    toast.success("Product Added to cart");
   }
 
 
@@ -97,10 +99,15 @@ function App() {
     
   }, []);
 
+
+  const handleSearchCategory = (category) => {
+    setCategory(category);
+  }
+
   const router = createBrowserRouter(createRoutesFromElements(
     <>
-      <Route path="/" element={<Main cartItems={cartItems} />}>
-        <Route index element={<Home cartItems={cartItems} handleAddtoCart={handleAddtoCart} handleDelete={handleDelete} products={products} />} >
+      <Route path="/" element={<Main cartItems={cartItems} handleSearchCategory={handleSearchCategory}/>}>
+        <Route index element={<Home cartItems={cartItems} handleAddtoCart={handleAddtoCart} handleDelete={handleDelete} products={products} category={category}/>} >
         </Route>
         <Route path="/cart" element={<Cart cartItems={cartItems} handleDelete={handleDelete} handleDeleteproduct={handleDeleteproduct} handleAddtoCart={handleAddtoCart} />}>
         </Route>
@@ -122,7 +129,7 @@ function App() {
   return (
     <div className="font-bodyFont bg-gray-100">
       <RouterProvider router={router}></RouterProvider>
-      <Toaster />
+      <Toaster position="bottom-center" reverseOrder={false}/>
     </div>
   );
 }

@@ -8,84 +8,88 @@ import { bannerImgFive } from '../assets';
 export const allCategories = [
     {
         _id:"1",
-        title:"All Categories"
+        title:"All"
     },
     {
         _id:"2",
-        title:"Alexa Skills"
+        title:"Men's clothing"
     },
     {
         _id:"3",
-        title:"Amazon Devices"
+        title:"Jewelery"
     },
     {
         _id:"4",
-        title:"Amazon Fashion"
-    },
-    {
-        _id:"5",
-        title:"Amazon Fresh"
-    },
-    {
-        _id:"6",
-        title:"Amazon Pharmacy"
-    },
-    {
-        _id:"7",
-        title:"Appliances"
-    },
-    {
-        _id:"8",
-        title:"Baby"
-    },
-    {
-        _id:"9",
-        title:"Beauty"
-    },
-    {
-        _id:"10",
-        title:"Books"
-    },
-    {
-        _id:"11",
-        title:"Car Motorbike"
-    },
-    {
-        _id:"12",
-        title:"Clothing Accessories"
-    },
-    {
-        _id:"13",
-        title:"Collectibles"
-    },
-    {
-        _id:"14",
-        title:"Computers Accessories"
-    },
-    {
-        _id:"15",
-        title:"Deals"
-    },
-    {
-        _id:"16",
         title:"Electronics"
     },
     {
-        _id:"17",
-        title:"Furniture"
+        _id:"5",
+        title:"Women's clothing"
     },
-    {
-        _id:"18",
-        title:"Garden Outdoors"
-    },
-    {
-        _id:"19",
-        title:"Gift Cards"
-    },
-    {
-        _id:"20",
-        title:"Grocery Gourmet Foods"
-    }
+    // {
+    //     _id:"5",
+    //     title:"Amazon Fresh"
+    // },
+    // {
+    //     _id:"6",
+    //     title:"Amazon Pharmacy"
+    // },
+    // {
+    //     _id:"7",
+    //     title:"Appliances"
+    // },
+    // {
+    //     _id:"8",
+    //     title:"Baby"
+    // },
+    // {
+    //     _id:"9",
+    //     title:"Beauty"
+    // },
+    // {
+    //     _id:"10",
+    //     title:"Books"
+    // },
+    // {
+    //     _id:"11",
+    //     title:"Car Motorbike"
+    // },
+    // {
+    //     _id:"12",
+    //     title:"Clothing Accessories"
+    // },
+    // {
+    //     _id:"13",
+    //     title:"Collectibles"
+    // },
+    // {
+    //     _id:"14",
+    //     title:"Computers Accessories"
+    // },
+    // {
+    //     _id:"15",
+    //     title:"Deals"
+    // },
+    // {
+    //     _id:"16",
+    //     title:"Electronics"
+    // },
+    // {
+    //     _id:"17",
+    //     title:"Furniture"
+    // },
+    // {
+    //     _id:"18",
+    //     title:"Garden Outdoors"
+    // },
+    // {
+    //     _id:"19",
+    //     title:"Gift Cards"
+    // },
+    // {
+    //     _id:"20",
+    //     title:"Grocery Gourmet Foods"
+    // }
 ];
 
 
