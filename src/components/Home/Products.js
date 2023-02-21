@@ -7,7 +7,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import './products.css'
 
-const Products = ({handleAddtoCart, handleDelete, products}) => {
+const Products = ({ handleAddtoCart, handleDelete, products }) => {
 
     // const data = useLoaderData();
     // const productsData = data.data.products;
@@ -16,11 +16,11 @@ const Products = ({handleAddtoCart, handleDelete, products}) => {
     // console.log(productsData.map(pro => ({...pro, qty: 0}));
     // const products = productsData.map(obj => ({ ...obj, qty: 0 }));
     // console.log(products);
-    
-    
+
+
     // document.getElementById('button').addEventListener('click', function(e) {e.preventDefault()});
 
-    
+
     return (
         <div className='max-w-screen-2 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 px-4'>
             {
@@ -53,18 +53,18 @@ const Products = ({handleAddtoCart, handleDelete, products}) => {
 
                                     <span className='addCartIcon hover-trigger'>
                                         <span className='absolute hover-target'>Wishlist</span>
-                                        <FavoriteIcon className='hov-icon'/>
+                                        <FavoriteIcon className='hov-icon' />
                                     </span>
                                 </li>
                                 <li className='productLi relative'>
 
-                                <Link to={`/singleproduct/${item.id}`}>
-                                    <span className='addCartIcon hover-trigger'><span className='absolute hover-target'>View details</span><ArrowCircleRightIcon className='hov-icon'/></span>
-                                </Link>
+                                    <Link to={`/singleproduct/${item.id}`}>
+                                        <span className='addCartIcon hover-trigger'><span className='absolute hover-target'>View details</span><ArrowCircleRightIcon className='hov-icon' /></span>
+                                    </Link>
                                 </li>
                                 <li className='productLi relative'>
 
-                                    <span className='addCartIcon hover-trigger' onClick={() => handleAddtoCart(item)}><span className='absolute hover-target'>Add to Cart</span><ShoppingCartIcon className='hov-icon'/></span>
+                                    <span className='addCartIcon hover-trigger' onClick={() => handleAddtoCart(item)}><span className='absolute hover-target'>Add to Cart</span><ShoppingCartIcon className='hov-icon' /></span>
                                 </li>
 
                             </ul>
@@ -84,7 +84,15 @@ const Products = ({handleAddtoCart, handleDelete, products}) => {
                                     <StarIcon />
                                 </div>
                             </div>
-                            <button id='button' className='w-full font-titleFont font-medium text-base bg-gradient-to-tr from-yellow-400 to-yellow-200 border hover:from-yellow-300 hover:to-yellow-border-yellow-500 hover:border-yellow-700 active:bg-gradient-to-b1 active:from-yellow-400 active:to-yellow-500 duration-200 py-1.5 rounded-md mt-3' onClick={() => handleAddtoCart(item)}>Add to Cart</button>
+                            {
+                                item?.stock !== 0 ?
+                                    <button id='button' className='w-full font-titleFont font-medium text-base bg-gradient-to-tr from-yellow-400 to-yellow-200 border hover:from-yellow-300 hover:to-yellow-border-yellow-500 hover:border-yellow-700 active:bg-gradient-to-b1 active:from-yellow-400 active:to-yellow-500 duration-200 py-1.5 rounded-md mt-3' onClick={() => handleAddtoCart(item)}>Add to Cart</button>
+                                    :
+                                    <button type="button" className="w-full font-titleFont font-medium text-base py-1.5 rounded-md mt-3 focus:outline-none rounded-md disabled:opacity-75 bg-gradient-to-tr from-yellow-400 to-yellow-200 border hover:from-yellow-300 hover:to-yellow-border-yellow-500 hover:border-yellow-700"
+                                        disabled>Out of Stock</button>
+                            }
+
+
                         </div>
                     </div>
                 ))
