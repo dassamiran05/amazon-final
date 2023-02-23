@@ -10,9 +10,10 @@ import { Link } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
-const Header = ({ cartItems, handleSearchCategory }) => {
+const Header = ({ cartItems, handleSearchProduct, setSearchQuery }) => {
     const [showAll, setShowall] = useState(false);
     const [selected, setSelected] = useState("");
+    const [searchKeywords, setSearchKeywords] = useState('');
 
     const { user, signOutUser } = useContext(AuthContext);
 
@@ -42,18 +43,24 @@ const Header = ({ cartItems, handleSearchCategory }) => {
             .catch(error => console.error(error));
     }
 
+    const handleState = () => {
+        setSelected("");
+        setSearchQuery({});
+        document.getElementById("input-tag").value = "";
+    }
+
     return (
         <div className='w-full'>
             <div className='w-full bg-amazon_blue flex items-center gap-4 px-4 py-3 text-white justify-center'>
                 <div className='headerHover'>
-                    <Link to="/"><img className='w-24 mt-2' src={logo} alt="" /></Link>
+                    <Link to="/"><img className='w-24 mt-2' src={logo} alt="" onClick={() => handleState()} /></Link>
                 </div>
                 <div className='headerHover hidden mdl:inline-flex'>
                     <LocationOnIcon />
                     <p className='flex flex-col text-sm text-lightText font-light'>Deliver to <span className="text-sm font-semibold -mt-1 text-whiteText">Kolkata</span></p>
                 </div>
                 <div className="h-10 rounded hidden lgl:flex items-center flex-grow relative">
-                    <span onClick={() => setShowall(!showAll)} className='w-auto px-1 h-full flex items-center justify-center bg-gray-200 hover:bg-gray-300 duration-300 text-amazon_blue cursor-pointer rounded-tl-md rounded-bl-md text-sm'>{selected ? selected : 'All'} <span></span><ArrowDropDownIcon /></span>
+                    <span onClick={() => setShowall(!showAll)} className='w-auto px-1 h-full flex items-center justify-center bg-gray-200 hover:bg-gray-300 duration-300 text-amazon_blue cursor-pointer rounded-tl-md rounded-bl-md text-sm'>{selected ? selected : 'All Categories'} <span></span><ArrowDropDownIcon /></span>
                     {
                         showAll && (
                             <div>
@@ -66,8 +73,8 @@ const Header = ({ cartItems, handleSearchCategory }) => {
                             </div>
                         )
                     }
-                    <input type="text" className="h-full text-base text-amazon_blue flex-grow outline-none border-none px-2" />
-                    <button className='w-12 h-full flex items-center justify-center bg-amazon_yellow hover:bg-[#f3a847] duration-300 text-amazon_blue cursor-pointer rounded-tr-md rounded-br-md' onClick={() => handleSearchCategory(selected)}><SearchIcon /></button>
+                    <input type="text" className="h-full text-base text-amazon_blue flex-grow outline-none border-none px-2" onChange={e => setSearchKeywords(e.target.value)} id="input-tag"/>
+                    <button className='w-12 h-full flex items-center justify-center bg-amazon_yellow hover:bg-[#f3a847] duration-300 text-amazon_blue cursor-pointer rounded-tr-md rounded-br-md' onClick={() => handleSearchProduct(selected, searchKeywords)}><SearchIcon /></button>
                 </div>
                 <div className='relative group'>
                     <Link to="/signin">
@@ -76,16 +83,23 @@ const Header = ({ cartItems, handleSearchCategory }) => {
                             <p className="text-sm font-semibold -mt-1 text-whiteText hidden mdl:inline-flex">Accounts & Lists <span><ArrowDropDownIcon /></span></p>
                         </div>
                     </Link>
-                    <div className='hidden absolute w-[200px] h-auto bg-white z-50 p-5 flex flex-col items-center justify-center gap-2 shadow-sm group-hover:inline-flex duration-1000'>
-                        <Link to='/signin'>
-                            <button className='bg-[#febd69] font-titleFont text-sm p-3 text-black w-[120px] bg-gradient-to-tr from-yellow-400 to-yellow-200 border hover:from-yellow-300 hover:to-yellow-border-yellow-500 hover:border-yellow-700 active:bg-gradient-to-b1 active:from-yellow-400 active:to-yellow-500 duration-200 py-2.5 rounded-md'>Sign in</button> 
-                        </Link>
-                        <p className='flex gap-2 items-center text-xs font-titleFont text-black font-medium text-base'>New Customer
-                            <Link to='/signup'>
-                            <span className='text-xs font-titleFont text-[#05a] cursor-pointer hover:text-[#e47911] hover:underline duration-200'>Start here</span>
-                            </Link>
-                        </p>
-                    </div>
+                    {
+                        !user && (
+                            <>
+                                <div className='hidden absolute w-[200px] h-auto bg-white z-50 p-5 flex flex-col items-center justify-center gap-2 shadow-sm group-hover:inline-flex duration-1000'>
+                                    <Link to='/signin'>
+                                        <button className='bg-[#febd69] font-titleFont text-sm p-3 text-black w-[120px] bg-gradient-to-tr from-yellow-400 to-yellow-200 border hover:from-yellow-300 hover:to-yellow-border-yellow-500 hover:border-yellow-700 active:bg-gradient-to-b1 active:from-yellow-400 active:to-yellow-500 duration-200 py-2.5 rounded-md'>Sign in</button>
+                                    </Link>
+                                    <p className='flex gap-2 items-center text-xs font-titleFont text-black font-medium text-base'>New Customer
+                                        <Link to='/signup'>
+                                            <span className='text-xs font-titleFont text-[#05a] cursor-pointer hover:text-[#e47911] hover:underline duration-200'>Start here</span>
+                                        </Link>
+                                    </p>
+                                </div>
+                            </>
+                        )
+                    }
+
                 </div>
 
                 <div className="flex flex-col items-start justify-center headerHover hidden lgl:flex">

@@ -1,16 +1,34 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
-// import StarIcon from '@mui/icons-material/Star';
-// import ApiIcon from '@mui/icons-material/Api';
-// import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-// import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-// import FavoriteIcon from '@mui/icons-material/Favorite';
 import './products.css'
 import Product from './Product';
 
-const Products = ({ handleAddtoCart, handleDelete, products, category }) => {
+const Products = ({ handleAddtoCart, products, category, searchQuery }) => {
 
-    const categoryProducts = products.filter(x => x.category === category.toLowerCase());
+    // const categoryProducts = products.filter(x => x.category === searchQuery.category?.toLowerCase());
+
+    // const keySearchProducts = products.filter(x => {
+    //     if (searchQuery.keyword === "") {
+    //         return x;
+    //     }
+    //     else if(x.title?.toLowerCase().includes(searchQuery.keyword?.toLowerCase())) {
+    //         return x;
+    //     }
+    // });
+
+
+    const searchProducts = products.filter(x => {
+        if(x.category?.toLowerCase() === searchQuery.category?.toLowerCase() && x.title?.toLowerCase().includes(searchQuery.keyword?.toLowerCase())){
+            return x;
+        }else if(x.category?.toLowerCase() === searchQuery.category?.toLowerCase() && searchQuery.keyword === ''){
+            return x;
+        }else if(x.title?.toLowerCase().includes(searchQuery.keyword?.toLowerCase()) && searchQuery.category === ''){
+            return x;
+        }
+        else {
+            return null;
+        }
+    })
+   
 
     // const data = useLoaderData();
     // const productsData = data.data.products;
@@ -25,9 +43,9 @@ const Products = ({ handleAddtoCart, handleDelete, products, category }) => {
     return (
         <div className='max-w-screen-2 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 px-4'>
             {
-                category !== 'All'
+                searchQuery?.keyword || searchQuery?.category
                     ?
-                    categoryProducts.map(item => <Product key={item.id} item={item} handleAddtoCart={handleAddtoCart}></Product>)
+                    searchProducts.map(item => <Product key={item.id} item={item} handleAddtoCart={handleAddtoCart}></Product>)
                     :
                     products.map(item => <Product key={item.id} item={item} handleAddtoCart={handleAddtoCart}></Product>)
             }

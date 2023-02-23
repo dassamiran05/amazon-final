@@ -8,7 +8,7 @@ import { bannerImgFive } from '../assets';
 export const allCategories = [
     {
         _id:"1",
-        title:"All"
+        title:"All Categories"
     },
     {
         _id:"2",
